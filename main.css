@@ -1,0 +1,506 @@
+/* ======================================== */
+/* DESIGN SYSTEM & VARIABLES                */
+/* ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* เปลี่ยนโทนสีให้เรียบร้อย สุขุม และดูเนี๊ยบขึ้น */
+    --primary: #2B4C7E;          /* สีกรมท่า/น้ำเงินสุภาพ */
+    --primary-light: #4A6FA5;    /* สีฟ้าหม่นโทนสุภาพ */
+    --secondary: #1A2639;        /* สีกรมเข้มเกือบดำสำหรับพื้นหลังหลัก */
+    --accent: #E2A04F;           /* สีทองหม่น/น้ำตาลทรายทอง (ดูพรีเมียมขึ้น แทนเหลืองสว่าง) */
+    --accent-hover: #D18F3E;
+    --white: #FFFFFF;
+    --light: #F4F6F9;            /* สีพื้นหลังเทาอมฟ้าอ่อนๆ สะอาดตา */
+    --text-dark: #222831;
+    --text-light: #606873;
+    --gradient-main: linear-gradient(135deg, #2B4C7E, #1A2639);
+    --gradient-card: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+    
+    /* ปรับลดความฟุ้งของเงาให้ดูเรียบง่าย */
+    --shadow-sm: 0 2px 8px rgba(26, 38, 57, 0.08);
+    --shadow-md: 0 4px 16px rgba(26, 38, 57, 0.12);
+    --shadow-lg: 0 8px 24px rgba(26, 38, 57, 0.16);
+    
+    /* ลดความโค้งมนลงให้ตัวเว็บดูคมและเรียบร้อยขึ้น */
+    --radius-sm: 4px;            /* ลดจาก 12px เหลือ 4px */
+    --radius-md: 8px;            /* ลดจาก 20px เหลือ 8px */
+    --transition: all 0.3s ease;
+}
+
+/* ======================================== */
+/* RESET & BASE STYLES                      */
+/* ======================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+    background: var(--light);
+    color: var(--text-dark);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ======================================== */
+/* NAVIGATION BAR                           */
+/* ======================================== */
+.navbar {
+    background: var(--secondary);
+    padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.logo:hover {
+    color: var(--accent);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 18px;
+    display: block;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.nav-menu .active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.nav-menu .active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+}
+
+/* ======================================== */
+/* CONTAINER & FLEX LAYOUT                  */
+/* ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.flex-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+@media (max-width: 992px) {
+    .flex-layout {
+        flex-direction: column;
+    }
+    .content, .sidebar {
+        width: 100%;
+        flex: none !important;
+    }
+    .sidebar {
+        position: static !important;
+    }
+}
+
+/* ======================================== */
+/* MAIN CONTENT                             */
+/* ======================================== */
+.content {
+    flex: 2.5;
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 10px 0 30px;
+    border-bottom: 1px solid #E5E9F0;
+    margin-bottom: 35px;
+}
+
+.hero-avatar {
+    width: 100px;
+    height: 100px;
+    background: var(--gradient-main);
+    border-radius: 50%; /* วงกลมของโปรไฟล์ยังคงไว้เพื่อความสวยงาม */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 3.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 3px solid var(--white);
+    transition: var(--transition);
+}
+
+.hero h1 {
+    color: var(--secondary);
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.hero p {
+    color: var(--text-light);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-tags {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.hero-tags span {
+    background: #EDF2F7;
+    padding: 4px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 500;
+    border: 1px solid rgba(43, 76, 126, 0.1);
+}
+
+/* Section Headers */
+.section-title {
+    color: var(--secondary);
+    font-size: 1.4rem;
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #E5E9F0;
+}
+
+/* ======================================== */
+/* CARD GRID - ผลงานของฉัน                    */
+/* ======================================== */
+.card-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.card {
+    flex: 1 1 280px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid #E5E9F0;
+    cursor: default;
+}
+
+.card:hover {
+    transform: translateY(-4px); /* ลดระยะการลอยลงให้ดูนิ่งและพรีเมียมขึ้น */
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+}
+
+.card-image {
+    height: 140px;
+    background: var(--gradient-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--white);
+}
+
+.card h3 {
+    padding: 15px 20px 6px;
+    font-size: 1.1rem;
+    color: var(--secondary);
+}
+
+.card p {
+    padding: 0 20px 20px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.card-badge {
+    display: inline-block;
+    background: #EDF2F7;
+    color: var(--primary);
+    font-size: 0.75rem;
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+    margin: 15px 20px 0;
+    font-weight: 600;
+}
+
+/* ======================================== */
+/* SKILLS SECTION                           */
+/* ======================================== */
+.skills-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.skill-item {
+    background: var(--white);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    border: 1px solid #E5E9F0;
+    transition: var(--transition);
+}
+
+.skill-item:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+/* ======================================== */
+/* SIDEBAR - ข้อมูลส่วนตัว                     */
+/* ======================================== */
+.sidebar {
+    flex: 1.2;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 35px 25px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar h3 {
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+    margin: 0 0 15px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sidebar h3:not(:first-child) {
+    margin-top: 30px;
+}
+
+.sidebar .profile-intro {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.sidebar .profile-intro .avatar-sm {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 2.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .profile-intro h4 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.sidebar .profile-intro p {
+    opacity: 0.75;
+    font-size: 0.85rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.9rem;
+    transition: var(--transition);
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar li:hover {
+    padding-left: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+}
+
+.sidebar .contact-info li {
+    border-bottom: none;
+    padding: 6px 0;
+}
+
+.sidebar .contact-info li::before {
+    content: '📧 ';
+}
+
+.sidebar .contact-info li:nth-child(2)::before {
+    content: '📱 ';
+}
+
+.sidebar .contact-info li:nth-child(3)::before {
+    content: '🌐 ';
+}
+
+.sidebar .btn-contact {
+    display: block;
+    background: var(--accent);
+    color: var(--secondary);
+    text-align: center;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    margin-top: 25px;
+    transition: var(--transition);
+}
+
+.sidebar .btn-contact:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 4px 12px rgba(226, 160, 79, 0.3);
+}
+
+/* ======================================== */
+/* FOOTER                                   */
+/* ======================================== */
+.footer {
+    background: var(--secondary);
+    color: var(--light);
+    margin-top: 60px;
+    border-top: 3px solid var(--primary);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    max-width: 1200px;
+    margin: 0 auto;
+}
